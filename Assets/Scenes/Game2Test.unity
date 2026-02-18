@@ -124,23 +124,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 7706802668328218859, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
   m_PrefabInstance: {fileID: 1825443364}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &256807185 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 791756220344546663, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
-  m_PrefabInstance: {fileID: 6671038573502573682}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &256807189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 256807185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachinePixelPerfect
 --- !u!4 &419369549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1663730819831608783, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
@@ -3577,6 +3560,10 @@ PrefabInstance:
       propertyPath: dashDuration
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 7855542146529300337, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8908713422602594398, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3653,10 +3640,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 791756220344546663, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 256807189}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
 --- !u!1001 &8305453446738077772
 PrefabInstance:

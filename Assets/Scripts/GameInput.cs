@@ -8,6 +8,10 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnJump;
     public event EventHandler OnDash;
     public event EventHandler OnLantern;
+    public event EventHandler OnIntensityUp;
+    public event EventHandler CancelIntensityUp;
+    public event EventHandler OnIntensityDown;
+    public event EventHandler CancelIntensityDown;
 
     private InputSystem_Actions inputActions;
 
@@ -20,6 +24,10 @@ public class GameInput : MonoBehaviour
         inputActions.Player.Jump.performed += Jump_Performed;
         inputActions.Player.Dash.performed += Dash_Performed;
         inputActions.Player.Lantern.performed += Lantern_Performed;
+        inputActions.Player.IntensityUp.performed += IntensityUpPerformed;
+        inputActions.Player.IntensityUp.canceled += IntensityUpCancelled;
+        inputActions.Player.IntensityDown.performed += IntensityDownPerformed;
+        inputActions.Player.IntensityDown.canceled += IntensityDownCancelled;
     }
 
     private void SingletonPattern()
@@ -45,6 +53,26 @@ public class GameInput : MonoBehaviour
     private void Lantern_Performed(InputAction.CallbackContext context)
     {
         OnLantern?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void IntensityUpPerformed(InputAction.CallbackContext context)
+    {
+        OnIntensityUp?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void IntensityUpCancelled(InputAction.CallbackContext context)
+    {
+        CancelIntensityUp?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void IntensityDownPerformed(InputAction.CallbackContext context)
+    {
+        OnIntensityDown?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void IntensityDownCancelled(InputAction.CallbackContext context)
+    {
+        CancelIntensityDown?.Invoke(this, EventArgs.Empty);
     }
 
     public Vector2 GetMoveVector()
