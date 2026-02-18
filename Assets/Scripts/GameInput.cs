@@ -31,12 +31,12 @@ public class GameInput : MonoBehaviour
 
     private void Jump_Performed(InputAction.CallbackContext context)
     {
-        OnJump.Invoke(this, EventArgs.Empty);
+        OnJump?.Invoke(this, EventArgs.Empty);
     }
 
-    public int Move()
+    public Vector2 GetMoveVector()
     {
-        // implement move
-        return 0;
+        Vector2 moveVector = inputActions.Player.Move.ReadValue<Vector2>();
+        return moveVector;
     }
 }
