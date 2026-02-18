@@ -145,8 +145,22 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: 256, y: 192.37523}
+        - {x: 235.37498, y: 227.37523}
+        - {x: -163.625, y: 227.37523}
+        - {x: -223.12498, y: 209.87523}
+        - {x: -223.12498, y: -201.37474}
+        - {x: -189.87498, y: -255.62474}
+        - {x: 256, y: -255.62474}
+      physicsShape:
+      - - {x: 256, y: 188.87523}
+        - {x: 238.87498, y: 225.62523}
+        - {x: -188.12498, y: 225.62523}
+        - {x: -219.62498, y: 166.12524}
+        - {x: -219.62498, y: -246.87474}
+        - {x: -186.37498, y: -255.62474}
+        - {x: 256, y: -255.62474}
       tessellationDetail: 0
       bones: []
       spriteID: f52ecdcc8a0b23b4aa33893fbf00311f
@@ -167,7 +181,12 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: 256, y: 227.37523}
+        - {x: -243.99997, y: 227.37523}
+        - {x: -256, y: 202.87523}
+        - {x: -256, y: -255.62474}
+        - {x: 256, y: -255.62474}
       physicsShape: []
       tessellationDetail: 0
       bones: []
@@ -189,7 +208,14 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: 190.12503, y: -252.12474}
+        - {x: 223.37503, y: -252.12474}
+        - {x: 225.12503, y: -250.37474}
+        - {x: 225.12503, y: 227.37523}
+        - {x: -256, y: 227.37523}
+        - {x: -256, y: -255.62474}
+        - {x: 190.12503, y: -255.62474}
       physicsShape: []
       tessellationDetail: 0
       bones: []
@@ -211,7 +237,13 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: 227.0001, y: 227.37523}
+        - {x: -189.49986, y: 227.37523}
+        - {x: -220.99986, y: 185.37523}
+        - {x: -220.99986, y: -178.62474}
+        - {x: -210.49986, y: -255.62474}
+        - {x: 227.0001, y: -255.62474}
       physicsShape: []
       tessellationDetail: 0
       bones: []
