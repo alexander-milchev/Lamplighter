@@ -40,7 +40,7 @@ public class LanternController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("_Player");
         target = player.transform.GetChild(1).gameObject;
         lanternHolder = gameObject;
         lightCollider = gameObject.GetComponent<CircleCollider2D>();
