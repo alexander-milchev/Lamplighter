@@ -17,7 +17,7 @@ MonoBehaviour:
     To: IdleCamera
     Blend:
       Style: 2
-      Time: 3
+      Time: 5
       CustomCurve:
         serializedVersion: 2
         m_Curve: []

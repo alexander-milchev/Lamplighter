@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     [Header("Player Balancing")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
+    [SerializeField] private float dashForce;
+    [SerializeField] private float dashCooldown;
+    [SerializeField] private float dashDuration;
 
     [Header("Components")]
     [SerializeField] private Animator playerAnimator;
@@ -20,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private int jumpCount;
     private int groundLayer;
 
+    private bool canDash = true;
+
 
     private void Start()
     {
@@ -28,9 +33,10 @@ public class PlayerController : MonoBehaviour
         groundLayer = LayerMask.GetMask("Ground");
 
         GameInput.instance.OnJump += Jump;
+        GameInput.instance.OnDash += Dash;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
         FlipSprite();
@@ -52,6 +58,13 @@ public class PlayerController : MonoBehaviour
 
             if (jumpCount == 1){StartCoroutine(WaitToLand());}
         }
+    }
+
+    private void Dash(object sender, EventArgs e)
+    {
+        if(!canDash){return;}
+
+        StartCoroutine(DashRoutine());
     }
 
     private void Move()
@@ -81,5 +94,21 @@ public class PlayerController : MonoBehaviour
         yield return new WaitUntil(() => playerFeetCollider.IsTouchingLayers(groundLayer));
 
         playerAnimator.SetBool("isJumping", false);
+    }
+
+    private IEnumerator DashRoutine()
+    {
+        Debug.Log("Dashing");
+        canDash = false;
+
+        moveSpeed += dashForce;
+        playerAnimator.SetBool("isDashing", true);
+        yield return new WaitForSeconds(dashDuration);
+
+        moveSpeed -= dashForce;
+        playerAnimator.SetBool("isDashing", false);
+        
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 }
