@@ -145,6 +145,24 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""IntensityUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""7622bae3-995b-407c-a670-13cc72cd8aca"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""IntensityDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb6f3b19-5e68-4e47-a080-1f44d5a0077a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -455,6 +473,50 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0bf23ab8-b049-45f8-8f44-992fa5c2aa80"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""IntensityUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1e67973-e75c-4407-93f8-8c965d81add5"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""IntensityUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c86c78e1-61c6-402a-b10c-47d7acb06776"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""IntensityDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d156947-9a72-42f9-aad0-8f9357518eb7"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""IntensityDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1046,6 +1108,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_IntensityUp = m_Player.FindAction("IntensityUp", throwIfNotFound: true);
+        m_Player_IntensityDown = m_Player.FindAction("IntensityDown", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1145,6 +1209,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_IntensityUp;
+    private readonly InputAction m_Player_IntensityDown;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1180,6 +1246,14 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Move".
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Player_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/IntensityUp".
+        /// </summary>
+        public InputAction @IntensityUp => m_Wrapper.m_Player_IntensityUp;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/IntensityDown".
+        /// </summary>
+        public InputAction @IntensityDown => m_Wrapper.m_Player_IntensityDown;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1224,6 +1298,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @IntensityUp.started += instance.OnIntensityUp;
+            @IntensityUp.performed += instance.OnIntensityUp;
+            @IntensityUp.canceled += instance.OnIntensityUp;
+            @IntensityDown.started += instance.OnIntensityDown;
+            @IntensityDown.performed += instance.OnIntensityDown;
+            @IntensityDown.canceled += instance.OnIntensityDown;
         }
 
         /// <summary>
@@ -1253,6 +1333,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @IntensityUp.started -= instance.OnIntensityUp;
+            @IntensityUp.performed -= instance.OnIntensityUp;
+            @IntensityUp.canceled -= instance.OnIntensityUp;
+            @IntensityDown.started -= instance.OnIntensityDown;
+            @IntensityDown.performed -= instance.OnIntensityDown;
+            @IntensityDown.canceled -= instance.OnIntensityDown;
         }
 
         /// <summary>
@@ -1595,6 +1681,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "IntensityUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnIntensityUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "IntensityDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnIntensityDown(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

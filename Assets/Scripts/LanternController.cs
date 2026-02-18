@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class LanternController : MonoBehaviour
@@ -11,6 +12,10 @@ public class LanternController : MonoBehaviour
     [SerializeField] private float maxPitch = 45f;
     [Range(0f, 0.5f)]
     [SerializeField] private float smoothTime = 0.1f;
+    [Range(0f, 5f)]
+    [SerializeField] private float minLightRange = 2f;
+    [Range(5f, 20f)]
+    [SerializeField] private float maxLightRange = 10f;
 
     [Header("Components")]
     [SerializeField] private GameObject player;
@@ -21,6 +26,7 @@ public class LanternController : MonoBehaviour
     
     private float distance;
     private bool chaseFlag = true;
+    private float lightRadius;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +35,10 @@ public class LanternController : MonoBehaviour
         player = GameObject.Find("Player");
         target = player.transform.GetChild(1).gameObject;
         lanternHolder = gameObject;
+
+        lightRadius = minLightRange;
+
+        GameInput.instance.OnLantern += Lantern;
     }
 
     // Update is called once per frame
@@ -76,5 +86,21 @@ public class LanternController : MonoBehaviour
     {
         float newAngle = Mathf.SmoothDampAngle(lanternHolder.transform.eulerAngles.z, targetRot, ref rotVelocity, smoothTime);
         lanternHolder.transform.rotation = Quaternion.Euler(0, 0, newAngle);
+    }
+
+    private void Lantern(object sender, EventArgs e)
+    {
+        chaseFlag = !chaseFlag;
+        targetRot = 0f;
+    }
+
+    private void IntensityUp(object sender, EventArgs e)
+    {
+        
+    }
+
+    private void IntensityDown(object sender, EventArgs e)
+    {
+        
     }
 }
