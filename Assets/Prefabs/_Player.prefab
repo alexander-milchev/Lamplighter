@@ -5044,7 +5044,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &3543863045219554409
 MonoBehaviour:
@@ -5074,7 +5074,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9fcbb578647e94b81a8c6637b43c8369, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
