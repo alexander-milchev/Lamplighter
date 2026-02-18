@@ -11,7 +11,7 @@ public class BackGroundScroller : MonoBehaviour
         startPos = transform.position; 
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         Vector2 distance = cam.transform.position * parallaxEffect;
 

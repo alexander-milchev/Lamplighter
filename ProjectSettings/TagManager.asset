@@ -41,5 +41,29 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG_blurred
+    uniqueID: 1404993539
+    locked: 0
+  - name: BG_far
+    uniqueID: 3934341563
+    locked: 0
+  - name: BG_mid
+    uniqueID: 4065426683
+    locked: 0
+  - name: BG_near
+    uniqueID: 3922160777
+    locked: 0
+  - name: Player
+    uniqueID: 321099695
+    locked: 0
+  - name: Platform
+    uniqueID: 539857639
+    locked: 0
+  - name: Lantern
+    uniqueID: 57912983
+    locked: 0
+  - name: ForeGround
+    uniqueID: 3162608145
+    locked: 0
   m_RenderingLayers:
   - Default
