@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using static GameInput;
@@ -35,25 +36,20 @@ public class PlayerController : MonoBehaviour
         if (playerFeetCollider.IsTouchingLayers(groundLayer))
         {
             playerRB.linearVelocity += new Vector2 (0f, jumpSpeed);
+            playerAnimator.SetBool("isJumping", true);
+            StartCoroutine(WaitToLand());
         }
     }
 
     private void Move()
     {
         Vector2 moveVector = GameInput.instance.GetMoveVector();
-
         Vector2 playerVelocity = new Vector2 (moveVector.x * moveSpeed, playerRB.linearVelocityY);
-        bool hasHorizontalSpeed = Mathf.Abs(playerRB.linearVelocityX) > Mathf.Epsilon;
 
         playerRB.linearVelocity = playerVelocity;
-        if (hasHorizontalSpeed)
-        {
-            playerAnimator.SetBool("Walking", true);
-        }
-        else
-        {
-            playerAnimator.SetBool("Walking", false);
-        }
+
+        // Sets animations for jumping, falling and running
+        playerAnimator.SetFloat("xVelocity", Math.Abs(playerVelocity.x));
     }
 
     private void FlipSprite()
@@ -66,4 +62,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private IEnumerator WaitToLand()
+    {
+        int groundlayer = LayerMask.GetMask("Ground");
+        Debug.Log("Starting coroutine");
+
+        yield return new WaitUntil(() => !playerFeetCollider.IsTouchingLayers(groundlayer));
+        yield return new WaitUntil(() => playerFeetCollider.IsTouchingLayers(groundlayer));
+
+        Debug.Log("Landed");
+        playerAnimator.SetBool("isJumping", false);
+    }
 }
