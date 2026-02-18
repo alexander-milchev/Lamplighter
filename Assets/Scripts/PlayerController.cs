@@ -65,12 +65,10 @@ public class PlayerController : MonoBehaviour
     private IEnumerator WaitToLand()
     {
         int groundlayer = LayerMask.GetMask("Ground");
-        Debug.Log("Starting coroutine");
 
         yield return new WaitUntil(() => !playerFeetCollider.IsTouchingLayers(groundlayer));
         yield return new WaitUntil(() => playerFeetCollider.IsTouchingLayers(groundlayer));
 
-        Debug.Log("Landed");
         playerAnimator.SetBool("isJumping", false);
     }
 }
