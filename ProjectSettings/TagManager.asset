@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Bouncy
   - 
   - 
   - 
@@ -55,6 +55,9 @@ TagManager:
     locked: 0
   - name: Hazards
     uniqueID: 3506524021
+    locked: 0
+  - name: Interactables
+    uniqueID: 1941184317
     locked: 0
   - name: Player
     uniqueID: 321099695

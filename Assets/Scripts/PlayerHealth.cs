@@ -16,9 +16,13 @@ public class PlayerHealth : MonoBehaviour
     private bool canTakeDamage = true;
     private Vector2 collisionPos;
 
-    private void Start()
+    private void Awake()
     {
         SingletonPattern();
+    }
+    
+    private void Start()
+    {
         hazardsLayer = LayerMask.GetMask("Hazards");
     }
 
