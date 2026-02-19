@@ -206,7 +206,10 @@ public class LanternController : MonoBehaviour
         if (collision.TryGetComponent<ButtonController>(out ButtonController buttonController))
         {
             buttonController.DoorToggle();
-            Debug.Log("Toggling Door");
+        }
+        else if(collision.TryGetComponent<HazardsController>(out HazardsController hazardsController))
+        {
+            // Set enter time.
         }
     }
 
@@ -215,7 +218,10 @@ public class LanternController : MonoBehaviour
         if (collision.TryGetComponent<ButtonController>(out ButtonController buttonController))
         {
             buttonController.DoorToggle();
-            Debug.Log("Toggling Door");
+        } 
+        else if(collision.TryGetComponent<HazardsController>(out HazardsController hazardsController))
+        {
+            // Set exit time.
         }
     }
 
