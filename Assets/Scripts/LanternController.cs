@@ -1,9 +1,13 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class LanternController : MonoBehaviour
 {
+    public static LanternController instance;
+    public event EventHandler OnFuelEmpty;
+    
     [Header("Following Fields")]
     [Range(0f, 10f)]
     [SerializeField] private float chaseSpeed = 3f;
@@ -31,6 +35,21 @@ public class LanternController : MonoBehaviour
     private GameObject target;                  // At end of level, update target to the pedestal and let it go on top.
     private float targetRot = 0f;
     private float rotVelocity = 0f;
+
+    [Header("Sprites")]
+    [SerializeField] private GameObject spriteFull;
+    [SerializeField] private GameObject spriteLow;
+    [SerializeField] private GameObject spriteDead;
+
+    [Header("Light meter")]
+    [SerializeField] private float maxLightMeter = 10f;
+    [SerializeField] private float fullThreshold = 5f;
+    [SerializeField] private float maxFuelUse= 1f;
+    [SerializeField] private float lightRegenRate = 1f;
+    [SerializeField] private float flickerTime = 0.2f;
+    private float currentLightMeter;
+    private Coroutine lightDecreaseRoutine;
+    private bool noFuel;
     
     private float distance;
     private bool chaseFlag = true;
@@ -38,10 +57,26 @@ public class LanternController : MonoBehaviour
     private bool increasingIntensity = false;
     private bool decreasingIntensity = false;
 
-    
+    private void Awake()
+    {
+        SingletonPattern();
+    }
+
+    private void SingletonPattern()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentLightMeter = maxLightMeter;
         player = GameObject.Find("_Player");
         target = player.transform.GetChild(1).gameObject;
         lanternHolder = gameObject;
@@ -55,11 +90,13 @@ public class LanternController : MonoBehaviour
         GameInput.instance.CancelIntensityUp += IntensityUpCancel;
         GameInput.instance.OnIntensityDown += IntensityDown;
         GameInput.instance.CancelIntensityDown += IntensityDownCancel;
+        PlayerHealth.instance.OnDeath += LightDead;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log("Current fuel: " + currentLightMeter);
         UpdateDistance();
         if (chaseFlag && distance > maxTargetDistance)
         {
@@ -69,6 +106,7 @@ public class LanternController : MonoBehaviour
         UpdateTilt();       // Even if we aren't moving, let the Tilt resume back to 0.
         LightIntensity();
         UpdateLights();
+        RegenerateLight();
     }
 
     private void UpdateDistance()
@@ -118,6 +156,7 @@ public class LanternController : MonoBehaviour
             lightRadius -= changeRate;
         }
         lightRadius = Mathf.Clamp(lightRadius, minLightRange, maxLightRange);
+        if (!noFuel && lightRadius > minLightRange){UseFuel();}
     }
 
     private void UpdateLights()
@@ -140,21 +179,25 @@ public class LanternController : MonoBehaviour
 
     private void IntensityUp(object sender, EventArgs e)
     {
+        if(noFuel){return;}
         increasingIntensity = true;
     }
 
     private void IntensityUpCancel(object sender, EventArgs e)
     {
+        if(noFuel){return;}
         increasingIntensity = false;
     }
 
     private void IntensityDown(object sender, EventArgs e)
     {
+        if(noFuel){return;}
         decreasingIntensity = true;
     }
 
     private void IntensityDownCancel(object sender, EventArgs e)
     {
+        if(noFuel){return;}
         decreasingIntensity = false;
     }
 
@@ -173,6 +216,93 @@ public class LanternController : MonoBehaviour
         {
             buttonController.DoorToggle();
             Debug.Log("Toggling Door");
+        }
+    }
+
+
+    // Sprite meter + death stuff
+    private void LightDead(object sender, EventArgs e)
+    {
+        lightRadius = 0;
+        SetSprite(spriteDead);
+    }
+
+    public void SetSprite(GameObject sprite)
+    {
+        spriteFull.SetActive(false);
+        spriteLow.SetActive(false);
+        spriteDead.SetActive(false);
+
+        sprite.SetActive(true);
+    }
+
+    private void UseFuel()
+    {
+        if (lightDecreaseRoutine != null)
+        {
+            StopCoroutine(lightDecreaseRoutine);
+            lightDecreaseRoutine = null;
+        }
+        if (currentLightMeter < fullThreshold){SetSprite(spriteLow); spotLight.intensity = 2.5f;}
+        float lightPercentageLimit = maxLightRange - minLightRange;
+        float currentLightPercentage = lightRadius - minLightRange;
+
+        float fuelUseRate = currentLightPercentage/lightPercentageLimit;
+        float fuelUsePerSecond = fuelUseRate * maxFuelUse;
+        
+        lightDecreaseRoutine = StartCoroutine(DecreaseLightMeter(fuelUsePerSecond));
+        StartCoroutine(DecreaseLightToMinimum());
+    }
+    
+    private IEnumerator DecreaseLightMeter(float decreaseRate)
+    {
+        currentLightMeter = Mathf.Clamp(currentLightMeter, 0f, maxLightMeter);
+         while (currentLightMeter > 0)
+         {
+              currentLightMeter -= decreaseRate;
+              yield return new WaitForSeconds(1);
+          }
+        noFuel = true;
+        OnFuelEmpty?.Invoke(this, EventArgs.Empty);
+    }
+    
+    private IEnumerator DecreaseLightToMinimum()
+    {
+        if (currentLightMeter == 0 && lightRadius > minLightRange)
+        {
+            increasingIntensity = false;
+            decreasingIntensity = true;
+        }
+        
+        yield return new WaitUntil(() => lightRadius == minLightRange);
+        StartCoroutine(FlickerLights());
+        yield return new WaitWhile(() => currentLightMeter != maxLightMeter);
+        noFuel = false;
+        decreasingIntensity = false;
+    }
+
+    private void RegenerateLight()
+    {
+        currentLightMeter = Mathf.Clamp(currentLightMeter, 0f, maxLightMeter);
+        if (lightRadius == minLightRange && currentLightMeter < maxLightMeter)
+        {
+            currentLightMeter += lightRegenRate * Time.deltaTime;
+        }
+        if (currentLightMeter >= fullThreshold)
+        {
+            SetSprite(spriteFull);
+            spotLight.intensity = 3.15f;
+        }
+    }
+
+    private IEnumerator FlickerLights()
+    {
+        while (noFuel)
+        {
+        spotLight.gameObject.SetActive(false);
+        yield return new WaitForSeconds(flickerTime);
+        spotLight.gameObject.SetActive(true);
+        yield return new WaitForSeconds(flickerTime*10);
         }
     }
 }
