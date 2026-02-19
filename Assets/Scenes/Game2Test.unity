@@ -274,6 +274,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &832725958 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 791756220344546663, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
+  m_PrefabInstance: {fileID: 6671038573502573682}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &832725960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832725958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseListener
+  ApplyAfter: 2
+  ChannelMask: 1
+  Gain: 1
+  Use2DDistance: 0
+  UseCameraSpace: 1
+  SignalCombinationMode: 0
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &989575500
 GameObject:
   m_ObjectHideFlags: 0
@@ -3555,6 +3584,91 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8908713422602594398, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
   m_PrefabInstance: {fileID: 1825443364}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1353633697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353633691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseSource
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 3
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0.8380966
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.2
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 1, y: 1, z: 1}
+--- !u!114 &1353633698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353633691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f01ab544bb624a849dabef12c41c5c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenEffects
+  impulseSource: {fileID: 1353633697}
+  impulseForce: 0.25
 --- !u!1 &1597732673
 GameObject:
   m_ObjectHideFlags: 0
@@ -3805,34 +3919,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3543863045219554409, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
-      propertyPath: knockbackForce.x
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3543863045219554409, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
-      propertyPath: knockbackForce.y
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3543863045219554409, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
-      propertyPath: knockbackDuration
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3543863045219554409, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
-      propertyPath: minKnockbackForce
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 8908713422602594398, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
       propertyPath: m_Name
       value: _Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8977535041622144221, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
-      propertyPath: playerHealth
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8908713422602594398, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1353633698}
+    - targetCorrespondingSourceObject: {fileID: 8908713422602594398, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1353633697}
   m_SourcePrefab: {fileID: 100100000, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
 --- !u!1001 &5663125712104722333
 PrefabInstance:
@@ -3955,10 +4055,17 @@ PrefabInstance:
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 419369549}
+    - target: {fileID: 8300606948082914336, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
+      propertyPath: Target.TrackingTarget
+      value: 
+      objectReference: {fileID: 419369549}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 791756220344546663, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 832725960}
   m_SourcePrefab: {fileID: 100100000, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
 --- !u!1001 &8305453446738077772
 PrefabInstance:

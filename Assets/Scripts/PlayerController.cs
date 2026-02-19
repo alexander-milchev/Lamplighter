@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator PlayerKnockbackDuration()
     {
         isKnockedBack = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(knockbackDuration);
         isKnockedBack = false;
     }
 }
