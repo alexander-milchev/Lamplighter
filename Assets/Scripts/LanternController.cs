@@ -153,6 +153,19 @@ public class LanternController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log(collision.gameObject.name);
+        if (collision.TryGetComponent<ButtonController>(out ButtonController buttonController))
+        {
+            buttonController.DoorToggle();
+            Debug.Log("Toggling Door");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<ButtonController>(out ButtonController buttonController))
+        {
+            buttonController.DoorToggle();
+            Debug.Log("Toggling Door");
+        }
     }
 }

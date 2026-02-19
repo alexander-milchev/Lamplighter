@@ -16,14 +16,7 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameObject controlsMenu;
 
     [Header("Buttons")]
-    [SerializeField] private Button playButton;
-    [SerializeField] private Button optionsButton;
-    [SerializeField] private Button creditsButton;
-    [SerializeField] private Button quitButton;
-    [SerializeField] private Button displayButton;
-    [SerializeField] private Button soundButton;
-    [SerializeField] private Button controlsButton;
-    [SerializeField] private Button backButton;
+    [SerializeField] private GameObject startButtons; 
     public void Play()
     {
         SceneManager.LoadScene(sceneBuildIndex: 1);
@@ -31,6 +24,13 @@ public class Menu : MonoBehaviour
 
     public void Options()
     {
-        
+        optionsMenu.SetActive(true);
+        startButtons.SetActive(false);
+    }
+
+    public void OptionsBack()
+    {
+        optionsMenu.SetActive(false);
+        startButtons.SetActive(true);
     }
 }
