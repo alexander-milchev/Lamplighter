@@ -3605,10 +3605,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: _Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8977535041622144221, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
-      propertyPath: isDead
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3691,22 +3687,6 @@ PrefabInstance:
       propertyPath: AnimatedTarget
       value: 
       objectReference: {fileID: 106453560}
-    - target: {fileID: 5298295894572603488, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
-      propertyPath: HashOfParent.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298295894572603488, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
-      propertyPath: HashOfParent.Array.data[4].Hash
-      value: 304293996
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298295894572603488, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
-      propertyPath: HashOfParent.Array.data[4].HashOfParent
-      value: 756556552
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298295894572603488, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
-      propertyPath: Instructions.Array.data[1].ActivateAfter
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5627412514099318608, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.18711

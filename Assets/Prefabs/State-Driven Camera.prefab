@@ -185,7 +185,7 @@ MonoBehaviour:
     MinDuration: 0
   - FullHash: 637317342
     Camera: {fileID: 7132316653803170239}
-    ActivateAfter: 5
+    ActivateAfter: 10
     MinDuration: 0
   HashOfParent:
   - Hash: -409901381
@@ -195,6 +195,8 @@ MonoBehaviour:
   - Hash: 1950973854
     HashOfParent: -409901381
   - Hash: 788460410
+    HashOfParent: 756556552
+  - Hash: 304293996
     HashOfParent: 756556552
   m_LegacyLookAt: {fileID: 0}
   m_LegacyFollow: {fileID: 0}
