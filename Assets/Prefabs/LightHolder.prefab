@@ -153,6 +153,9 @@ MonoBehaviour:
   lightCollider: {fileID: 0}
   spotLight: {fileID: 3635956256543257722}
   lightSprite: {fileID: 7357009782281824049}
+  spriteFull: {fileID: 764670109065514673}
+  spriteLow: {fileID: 2630827367436730971}
+  spriteDead: {fileID: 7906923372673733162}
 --- !u!58 &7122520009341649127
 CircleCollider2D:
   m_ObjectHideFlags: 0
