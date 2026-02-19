@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -8,15 +9,16 @@ public class PlayerHealth : MonoBehaviour
     public event EventHandler OnDeath;
 
     [SerializeField]private int playerHealth = 3;
+    [SerializeField]private float invulnDuration = 1f;
     [HideInInspector]public bool isDead;
 
-    private PlayerController playerController;
     private int hazardsLayer;
+    private bool canTakeDamage = true;
+    private Vector2 collisionPos;
 
     private void Start()
     {
         SingletonPattern();
-        playerController = gameObject.GetComponent<PlayerController>();
         hazardsLayer = LayerMask.GetMask("Hazards");
     }
 
@@ -37,13 +39,15 @@ public class PlayerHealth : MonoBehaviour
         {
             OnTakeDamage?.Invoke(this, EventArgs.Empty);
             TakeDamage();
+            collisionPos = collision.transform.position;
             Debug.Log(playerHealth);
         }
     }
 
     private void TakeDamage()
     {
-        Debug.Log("Taking Damage");
+        if(!canTakeDamage){return;}
+        StartCoroutine(Invulnerable());
         if (playerHealth > 0)
         {
             playerHealth --;
@@ -63,5 +67,17 @@ public class PlayerHealth : MonoBehaviour
     public void Respawn()
     {
         // implement respawn stuff here
+    }
+
+    private IEnumerator Invulnerable()
+    {
+        canTakeDamage = false;
+        yield return new WaitForSeconds(invulnDuration);
+        canTakeDamage = true;
+    }
+
+    public Vector2 GetCollisionPos()
+    {
+        return collisionPos;
     }
 }
