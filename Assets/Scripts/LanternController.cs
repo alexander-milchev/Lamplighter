@@ -109,12 +109,10 @@ public class LanternController : MonoBehaviour
         if (PlayerHealth.instance.isDead){return;}
         if (increasingIntensity && !decreasingIntensity)
         {
-            Debug.Log("Increasing Intensity");
             lightRadius += changeRate;
         }
         else if(!increasingIntensity && decreasingIntensity)
         {
-            Debug.Log("Decreasing Intensity");
             lightRadius -= changeRate;
         }
         lightRadius = Mathf.Clamp(lightRadius, minLightRange, maxLightRange);
@@ -151,5 +149,10 @@ public class LanternController : MonoBehaviour
     private void IntensityDownCancel(object sender, EventArgs e)
     {
         decreasingIntensity = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
     }
 }
