@@ -5064,6 +5064,8 @@ MonoBehaviour:
   dashForce: 15
   dashCooldown: 3
   dashDuration: 0.25
+  knockbackForce: {x: 15, y: 25}
+  knockbackDuration: 0.3
   playerAnimator: {fileID: 7706802668328218859}
 --- !u!114 &8977535041622144221
 MonoBehaviour:
@@ -5078,6 +5080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   playerHealth: 3
+  invulnDuration: 1
   isDead: 0
 --- !u!70 &8895340117902887641
 CapsuleCollider2D:
