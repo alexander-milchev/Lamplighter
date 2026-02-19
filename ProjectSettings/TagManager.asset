@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Hazards
   - Water
   - UI
   - Ground
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: BG_near
     uniqueID: 3922160777
+    locked: 0
+  - name: Hazards
+    uniqueID: 3506524021
     locked: 0
   - name: Player
     uniqueID: 321099695

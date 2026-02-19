@@ -106,14 +106,13 @@ public class LanternController : MonoBehaviour
 
     private void LightIntensity()
     {
+        if (PlayerHealth.instance.isDead){return;}
         if (increasingIntensity && !decreasingIntensity)
         {
-            Debug.Log("Increasing Intensity");
             lightRadius += changeRate;
         }
         else if(!increasingIntensity && decreasingIntensity)
         {
-            Debug.Log("Decreasing Intensity");
             lightRadius -= changeRate;
         }
         lightRadius = Mathf.Clamp(lightRadius, minLightRange, maxLightRange);
@@ -127,6 +126,7 @@ public class LanternController : MonoBehaviour
 
     private void Lantern(object sender, EventArgs e)
     {
+        if (PlayerHealth.instance.isDead){return;}
         chaseFlag = !chaseFlag;
         targetRot = 0f;
     }
@@ -149,5 +149,23 @@ public class LanternController : MonoBehaviour
     private void IntensityDownCancel(object sender, EventArgs e)
     {
         decreasingIntensity = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<ButtonController>(out ButtonController buttonController))
+        {
+            buttonController.DoorToggle();
+            Debug.Log("Toggling Door");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<ButtonController>(out ButtonController buttonController))
+        {
+            buttonController.DoorToggle();
+            Debug.Log("Toggling Door");
+        }
     }
 }

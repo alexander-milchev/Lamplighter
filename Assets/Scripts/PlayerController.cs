@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashForce;
     [SerializeField] private float dashCooldown;
     [SerializeField] private float dashDuration;
+    [Header("Player Damage and Death")]
+    [SerializeField]private Vector2 knockbackForce = new Vector2(10f, 20f);
+    [SerializeField]private float knockbackDuration = 0.5f;
 
     [Header("Components")]
     [SerializeField] private Animator playerAnimator;
@@ -20,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D playerFeetCollider; // yummy
 
     private int maxJumps = 2;
+    private bool isKnockedBack;
     private int jumpCount;
     private int groundLayer;
 
@@ -34,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
         GameInput.instance.OnJump += Jump;
         GameInput.instance.OnDash += Dash;
+        PlayerHealth.instance.OnTakeDamage += KnockBackPlayer;
+        PlayerHealth.instance.OnDeath += DeathAnimation;
     }
 
     private void FixedUpdate()
@@ -44,6 +50,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump(object sender, EventArgs e)
     {
+        if (PlayerHealth.instance.isDead){return;}
         // Reset jump count
         if (playerFeetCollider.IsTouchingLayers(groundLayer))
         {
@@ -63,12 +70,15 @@ public class PlayerController : MonoBehaviour
     private void Dash(object sender, EventArgs e)
     {
         if(!canDash){return;}
+        if (PlayerHealth.instance.isDead){return;}
 
         StartCoroutine(DashRoutine());
     }
 
     private void Move()
     {
+        if (PlayerHealth.instance.isDead){return;}
+        if(isKnockedBack){return;}
         Vector2 moveVector = GameInput.instance.GetMoveVector();
         Vector2 playerVelocity = new Vector2 (moveVector.x * moveSpeed, playerRB.linearVelocityY);
 
@@ -80,12 +90,32 @@ public class PlayerController : MonoBehaviour
 
     private void FlipSprite()
     {
+        if (isKnockedBack){return;}
         bool hasHorizontalSpeed = Mathf.Abs(playerRB.linearVelocityX) > Mathf.Epsilon;
 
         if (hasHorizontalSpeed)
         {
             transform.localScale = new Vector2 (Mathf.Sign(playerRB.linearVelocityX), 1f);
         }
+    }
+
+    private void KnockBackPlayer(object sender, EventArgs e)
+    {
+        StartCoroutine(PlayerKnockbackDuration());
+
+        Vector2 collisionPos = PlayerHealth.instance.GetCollisionPos();
+        Vector2 direction = (Vector2)transform.position - collisionPos;
+
+        direction = direction.normalized;
+        playerRB.linearVelocity = new Vector2(
+            direction.x * knockbackForce.x, direction.y * knockbackForce.y
+        );
+    }
+
+    private void DeathAnimation(object sender, EventArgs e)
+    {
+        playerAnimator.SetTrigger("isDead");
+        playerRB.constraints = RigidbodyConstraints2D.None;
     }
 
     private IEnumerator WaitToLand()
@@ -110,5 +140,12 @@ public class PlayerController : MonoBehaviour
         
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    private IEnumerator PlayerKnockbackDuration()
+    {
+        isKnockedBack = true;
+        yield return new WaitForSeconds(knockbackDuration);
+        isKnockedBack = false;
     }
 }
