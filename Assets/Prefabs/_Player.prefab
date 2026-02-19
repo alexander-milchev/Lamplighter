@@ -101,7 +101,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 321099695
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 3a2a5bd84d51245a2b049fbb5eadfdce, type: 3}
@@ -4992,6 +4992,7 @@ GameObject:
   - component: {fileID: 1663730819831608783}
   - component: {fileID: 5691007869757406616}
   - component: {fileID: 3543863045219554409}
+  - component: {fileID: 8977535041622144221}
   - component: {fileID: 8895340117902887641}
   - component: {fileID: 2917854144707815016}
   m_Layer: 0
@@ -5064,6 +5065,20 @@ MonoBehaviour:
   dashCooldown: 3
   dashDuration: 0.25
   playerAnimator: {fileID: 7706802668328218859}
+--- !u!114 &8977535041622144221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8908713422602594398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a4bc4faab30b401db612a71aa3ea2dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  playerHealth: 3
+  isDead: 0
 --- !u!70 &8895340117902887641
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

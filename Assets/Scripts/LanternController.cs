@@ -106,6 +106,7 @@ public class LanternController : MonoBehaviour
 
     private void LightIntensity()
     {
+        if (PlayerHealth.instance.isDead){return;}
         if (increasingIntensity && !decreasingIntensity)
         {
             Debug.Log("Increasing Intensity");
@@ -127,6 +128,7 @@ public class LanternController : MonoBehaviour
 
     private void Lantern(object sender, EventArgs e)
     {
+        if (PlayerHealth.instance.isDead){return;}
         chaseFlag = !chaseFlag;
         targetRot = 0f;
     }

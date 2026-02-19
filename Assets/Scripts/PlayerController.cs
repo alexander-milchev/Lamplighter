@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump(object sender, EventArgs e)
     {
+        if (PlayerHealth.instance.isDead){return;}
         // Reset jump count
         if (playerFeetCollider.IsTouchingLayers(groundLayer))
         {
@@ -63,12 +64,14 @@ public class PlayerController : MonoBehaviour
     private void Dash(object sender, EventArgs e)
     {
         if(!canDash){return;}
+        if (PlayerHealth.instance.isDead){return;}
 
         StartCoroutine(DashRoutine());
     }
 
     private void Move()
     {
+        if (PlayerHealth.instance.isDead){return;}
         Vector2 moveVector = GameInput.instance.GetMoveVector();
         Vector2 playerVelocity = new Vector2 (moveVector.x * moveSpeed, playerRB.linearVelocityY);
 
