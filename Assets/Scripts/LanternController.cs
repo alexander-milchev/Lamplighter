@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class LanternController : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class LanternController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject lanternHolder;
     [SerializeField] private CircleCollider2D lightCollider;
+    [SerializeField] private Light2D spotLight;
     [SerializeField] public GameObject lightSprite;
     private GameObject target;                  // At end of level, update target to the pedestal and let it go on top.
     private float targetRot = 0f;
@@ -120,6 +122,11 @@ public class LanternController : MonoBehaviour
 
     private void UpdateLights()
     {
+        float innerRadius = lightRadius/2;
+        
+        spotLight.pointLightInnerRadius = innerRadius;
+        spotLight.pointLightOuterRadius = lightRadius;
+
         lightCollider.radius = lightRadius;
         lightSprite.transform.localScale = new Vector3(lightRadius * 2, lightRadius * 2, 1);
     }

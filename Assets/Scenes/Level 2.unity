@@ -28582,14 +28582,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5691007869757406616, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895340117902887641, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 9fcbb578647e94b81a8c6637b43c8369, type: 2}
     - target: {fileID: 8908713422602594398, guid: 27f92fbc84a7041dba312dc3d9772f7d, type: 3}
       propertyPath: m_Name
       value: _Player
@@ -28612,10 +28604,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2070189223468565222, guid: ec5fa1b3e7688405aaa8b2358117a723, type: 3}
-      propertyPath: orthographic size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 5012629387144376544, guid: ec5fa1b3e7688405aaa8b2358117a723, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -28673,22 +28661,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1049402105293707789, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.80710995
-      objectReference: {fileID: 0}
-    - target: {fileID: 1049402105293707789, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.23065
-      objectReference: {fileID: 0}
-    - target: {fileID: 1723053705406807076, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.8071097
-      objectReference: {fileID: 0}
-    - target: {fileID: 1723053705406807076, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.2306498
-      objectReference: {fileID: 0}
     - target: {fileID: 2437982592333773919, guid: 67e2c32febd8b4c38b9baf2dc2eb3c41, type: 3}
       propertyPath: m_Name
       value: State-Driven Camera
