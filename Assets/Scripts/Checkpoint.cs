@@ -5,7 +5,6 @@ public class Checkpoint : MonoBehaviour
 {
     [SerializeField] private GameObject spriteOn;
     [SerializeField] private GameObject spriteOff;
-    private bool turnedOn;
 
     private void Awake()
     {

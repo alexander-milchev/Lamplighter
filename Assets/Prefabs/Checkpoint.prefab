@@ -47,12 +47,12 @@ MonoBehaviour:
   m_ComponentVersion: 2
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 0.405
   m_Color: {r: 1, g: 0.8627451, b: 0.5137255, a: 1}
   m_Intensity: 5.34
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000000380be53bb4981eafb7c51f2896cc7e9754f01d13d1fb473af972313e7922d20119281bc
+  m_ApplyToSortingLayers: 000000000380be53bb4981eafb7c51f2754f01d13d1fb473af972313e7922d20896cc7e9
   m_LightCookieSprite: {fileID: 21300000, guid: 119f93d0bcbf1e743bf5fcf237507d39, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.61
-  m_PointLightOuterRadius: 8.81
+  m_PointLightOuterRadius: 10
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
