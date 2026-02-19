@@ -156,6 +156,11 @@ MonoBehaviour:
   spriteFull: {fileID: 764670109065514673}
   spriteLow: {fileID: 2630827367436730971}
   spriteDead: {fileID: 7906923372673733162}
+  maxLightMeter: 30
+  fullThreshold: 8
+  maxFuelUse: 0.1
+  lightRegenRate: 5
+  flickerTime: 0.01
 --- !u!58 &7122520009341649127
 CircleCollider2D:
   m_ObjectHideFlags: 0

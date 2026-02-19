@@ -5,6 +5,9 @@ using UnityEngine.Rendering.Universal;
 
 public class LanternController : MonoBehaviour
 {
+    public static LanternController instance;
+    public event EventHandler OnFuelEmpty;
+    
     [Header("Following Fields")]
     [Range(0f, 10f)]
     [SerializeField] private float chaseSpeed = 3f;
@@ -54,7 +57,22 @@ public class LanternController : MonoBehaviour
     private bool increasingIntensity = false;
     private bool decreasingIntensity = false;
 
-    
+    private void Awake()
+    {
+        SingletonPattern();
+    }
+
+    private void SingletonPattern()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -245,6 +263,7 @@ public class LanternController : MonoBehaviour
               yield return new WaitForSeconds(1);
           }
         noFuel = true;
+        OnFuelEmpty?.Invoke(this, EventArgs.Empty);
     }
     
     private IEnumerator DecreaseLightToMinimum()

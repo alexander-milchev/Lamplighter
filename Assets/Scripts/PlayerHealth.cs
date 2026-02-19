@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth instance;
+    public event EventHandler OnRespawn;
     public event EventHandler OnTakeDamage;
     public event EventHandler OnDeath;
 
@@ -20,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
     {
         SingletonPattern();
     }
-    
+
     private void Start()
     {
         hazardsLayer = LayerMask.GetMask("Hazards");
@@ -70,7 +71,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void Respawn()
     {
-        // implement respawn stuff here
+        OnRespawn?.Invoke(this, EventArgs.Empty);
+        isDead = false;
     }
 
     private IEnumerator Invulnerable()
