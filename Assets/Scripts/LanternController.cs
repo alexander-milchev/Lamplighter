@@ -320,4 +320,14 @@ public class LanternController : MonoBehaviour
         yield return new WaitForSeconds(flickerTime*10);
         }
     }
+
+    public float GetMaxLightMeter()
+    {
+        return maxLightMeter;
+    }
+
+    public float GetCurrentLightMeter()
+    {
+        return currentLightMeter;
+    }
 }
