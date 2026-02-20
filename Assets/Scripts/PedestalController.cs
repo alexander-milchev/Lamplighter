@@ -9,6 +9,7 @@ public class PedestalController : MonoBehaviour
 {
     [SerializeField] private GameObject pedestalTarget;
     [SerializeField] private GameObject globalLight;
+    [SerializeField] private Animator playerAnimator;
     private bool isLanternInRange = false;
     private bool endingLevel = false;
 
@@ -30,6 +31,8 @@ public class PedestalController : MonoBehaviour
             {
                 light2d.intensity += 0.002f;
             }
+            playerAnimator.SetTrigger("isWinning"); // we won
+            Debug.Log("won");
         }
     }
 
