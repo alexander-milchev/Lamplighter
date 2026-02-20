@@ -64,5 +64,6 @@ public class PedestalController : MonoBehaviour
         endingLevel = true;
         yield return new WaitForSeconds(10f);
         endingLevel = false;
+        GameManager.instance.DebugCollectibles();
     }
 }

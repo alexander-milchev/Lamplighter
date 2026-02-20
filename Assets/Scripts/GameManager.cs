@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject startCheckpoint;
     
     private GameObject lastCheckpoint;
+
+    private int[] collectibles = {-1, -1, -1};
 
     private void Awake()
     {
@@ -39,4 +42,16 @@ public class GameManager : MonoBehaviour
         return lastCheckpoint.transform.position;
     }
 
+    public void CollectCollectible(int coin)
+    {
+        collectibles[coin - 1] = coin;
+    }
+
+    public void DebugCollectibles()
+    {
+        foreach (int col in collectibles)
+        {
+            Debug.Log("Coin " + col);
+        }
+    }
 }
