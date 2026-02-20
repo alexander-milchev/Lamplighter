@@ -34,4 +34,10 @@ public class Menu : MonoBehaviour
         optionsMenu.SetActive(false);
         startButtons.SetActive(true);
     }
+
+    public void QuitButton()
+    {
+        Application.Quit();
+        Debug.Log("Quitting..");
+    }
 }

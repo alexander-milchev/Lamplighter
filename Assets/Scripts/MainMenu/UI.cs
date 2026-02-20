@@ -174,6 +174,12 @@ public class UI : MonoBehaviour
         TogglePause();
     }
 
+    public void QuitButton()
+    {
+        Application.Quit();
+        Debug.Log("quitting..");
+    }
+
     public void LoadMainMenu()
     {
         Debug.Log("clicked");
