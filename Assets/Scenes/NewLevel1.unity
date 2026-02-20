@@ -95889,6 +95889,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collectible (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2818498197706913721, guid: 5de393627a2e8ac42a10d21c2bcb8c2a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
