@@ -12,6 +12,7 @@ public class GameInput : MonoBehaviour
     public event EventHandler CancelIntensityUp;
     public event EventHandler OnIntensityDown;
     public event EventHandler CancelIntensityDown;
+    public event EventHandler OnEscape;
 
     private InputSystem_Actions inputActions;
 
@@ -28,6 +29,7 @@ public class GameInput : MonoBehaviour
         inputActions.Player.IntensityUp.canceled += IntensityUpCancelled;
         inputActions.Player.IntensityDown.performed += IntensityDownPerformed;
         inputActions.Player.IntensityDown.canceled += IntensityDownCancelled;
+        inputActions.Player.Escape.performed += EscapePerformed;
     }
 
     private void SingletonPattern()
@@ -73,6 +75,11 @@ public class GameInput : MonoBehaviour
     private void IntensityDownCancelled(InputAction.CallbackContext context)
     {
         CancelIntensityDown?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void EscapePerformed(InputAction.CallbackContext context)
+    {
+        OnEscape?.Invoke(this, EventArgs.Empty);
     }
 
     public Vector2 GetMoveVector()
