@@ -47,6 +47,7 @@ public class LanternController : MonoBehaviour
     [SerializeField] private float maxFuelUse= 1f;
     [SerializeField] private float lightRegenRate = 1f;
     [SerializeField] private float flickerTime = 0.2f;
+    [SerializeField] private float endLevelDuration = 5f;
     private float currentLightMeter;
     private Coroutine lightDecreaseRoutine;
     private bool noFuel;
@@ -56,6 +57,7 @@ public class LanternController : MonoBehaviour
     private float lightRadius;
     private bool increasingIntensity = false;
     private bool decreasingIntensity = false;
+    private bool endingLevel = false;
 
     private void Awake()
     {
@@ -181,6 +183,7 @@ public class LanternController : MonoBehaviour
 
     private void Lantern(object sender, EventArgs e)
     {
+        if (endingLevel){return;}
         if (PlayerHealth.instance.isDead){return;}
         chaseFlag = !chaseFlag;
         targetRot = 0f;
@@ -329,5 +332,28 @@ public class LanternController : MonoBehaviour
     public float GetCurrentLightMeter()
     {
         return currentLightMeter;
+    }
+    private IEnumerator EndAnimationCoroutine(GameObject playerTarget)
+    {
+        endingLevel = true;                 // Lock the lantern button
+        chaseFlag = true;                   // Start chasing the Pedestal Target
+        float mtdSave = maxTargetDistance;
+        maxTargetDistance = 0;              // Go Directly on top
+        yield return new WaitForSeconds(endLevelDuration);
+        endingLevel = false;
+        maxTargetDistance = mtdSave;
+        target = playerTarget;
+    }
+
+    public GameObject GetPlayerTarget()
+    {
+        return target;
+    }
+
+    public void EndLevel(GameObject pedestalTarget)
+    {
+        GameObject playerTarget = target;
+        target = pedestalTarget;                // Set the target to the pedestal
+        StartCoroutine(EndAnimationCoroutine(playerTarget));
     }
 }
