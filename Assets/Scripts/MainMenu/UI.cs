@@ -122,8 +122,8 @@ public class UI : MonoBehaviour
 
     private void WinScreen(object sender, EventArgs e)
     {
+        if (!LanternController.instance.isLevelEnding()){return;}
         winScreen.SetActive(true);
-        darkOverlay.SetActive(true);
         int[] coins = GameManager.instance.GetCollectibles();
         foreach (int c in coins)
         {

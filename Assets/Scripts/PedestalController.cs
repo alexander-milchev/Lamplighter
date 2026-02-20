@@ -15,12 +15,12 @@ public class PedestalController : MonoBehaviour
 
     public void Start()
     {
-        GameInput.instance.OnEndLevel += EndLevel;
+        GameInput.instance.OnEndLevel += GoalReached;
     }
 
     public void OnDestroy()
     {
-        GameInput.instance.OnEndLevel -= EndLevel;
+        GameInput.instance.OnEndLevel -= GoalReached;
     }
 
     public void FixedUpdate()
@@ -54,9 +54,10 @@ public class PedestalController : MonoBehaviour
         }
     }
 
-    private void EndLevel(object sender, EventArgs e)
+    private void GoalReached(object sender, EventArgs e)
     {
         if (!isLanternInRange){return;}
+        Debug.Log(isLanternInRange);
         if(endingLevel){return;}
         LanternController.instance.EndLevel(pedestalTarget);
         StartCoroutine(EndLevelCD());
@@ -67,6 +68,6 @@ public class PedestalController : MonoBehaviour
         endingLevel = true;
         yield return new WaitForSeconds(10f);
         endingLevel = false;
-        GameManager.instance.DebugCollectibles();
+        //GameManager.instance.DebugCollectibles();
     }
 }

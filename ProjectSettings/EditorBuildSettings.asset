@@ -8,13 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: dbbda3d7084b28e409b21fc06af40f44
+  - enabled: 1
+    path: Assets/Scenes/NewLevel1.unity
+    guid: 4dbb37b5cb319447b8e87685c08bbd62
+  - enabled: 1
+    path: Assets/Scenes/Duplicatethis.unity
+    guid: f06ca82dfe63148f0a26e8c59e3028d3
   - enabled: 0
     path: Assets/Scenes/Level 1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AlexCollectiblesScene.unity
     guid: c6cbcbdec00a78b4590dcf7a821d60e5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AriSceneLighting test.unity
     guid: 553271a20b6e04ca8a433cdba926c131
   m_configObjects:

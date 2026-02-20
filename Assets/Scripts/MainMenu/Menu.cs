@@ -19,6 +19,7 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameObject startButtons; 
     public void Play()
     {
+        Debug.Log("Play");
         SceneManager.LoadScene(sceneBuildIndex: 1);
     }
 

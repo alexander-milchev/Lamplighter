@@ -356,4 +356,9 @@ public class LanternController : MonoBehaviour
         target = pedestalTarget;                // Set the target to the pedestal
         StartCoroutine(EndAnimationCoroutine(playerTarget));
     }
+
+    public bool isLevelEnding()
+    {
+        return endingLevel;
+    }
 }
