@@ -8,6 +8,7 @@ public class UI : MonoBehaviour
 {
     [SerializeField] private GameObject pausedScreen;
     [SerializeField] private GameObject wastedScreen;
+    [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject darkOverlay;
     [SerializeField] private Slider fuelSlider;
     [SerializeField] private Image fillImage;
@@ -35,6 +36,7 @@ public class UI : MonoBehaviour
         PlayerHealth.instance.OnDeath += DeathScreen;
         PlayerHealth.instance.OnTakeDamage += UpdateHP;
         PlayerHealth.instance.OnRespawn += ResetHP;
+        GameInput.instance.OnEndLevel += WinScreen;
 
         fuelSlider.minValue = 0;
         fuelSlider.maxValue = 1f;
@@ -58,6 +60,7 @@ public class UI : MonoBehaviour
         PlayerHealth.instance.OnDeath -= DeathScreen;
         PlayerHealth.instance.OnTakeDamage -= UpdateHP;
         PlayerHealth.instance.OnRespawn -= ResetHP;
+        GameInput.instance.OnEndLevel -= WinScreen;
     }
 
     private void EscMenuOpen(object sender, EventArgs e)
@@ -116,6 +119,23 @@ public class UI : MonoBehaviour
         
     }
 
+    private void WinScreen(object sender, EventArgs e)
+    {
+        winScreen.SetActive(true);
+        darkOverlay.SetActive(true);
+        int[] coins = GameManager.instance.GetCollectibles();
+        foreach (int c in coins)
+        {
+            if (c > 0)
+            {
+                if (winScreen.TryGetComponent<WinScreenScript>(out WinScreenScript wss))
+                {
+                    wss.EnableCoin(c - 1);
+                }
+            }
+        }
+    }
+
     void UpdateSlider()
     {
         float max = LanternController.instance.GetMaxLightMeter();
@@ -139,6 +159,7 @@ public class UI : MonoBehaviour
     {
         PlayerHealth.instance.Respawn();
         wastedScreen.SetActive(false);
+        winScreen.SetActive(false);
         darkOverlay.SetActive(false);
         for (int i = 0; i < hpImages.Length; i++)
             {
@@ -156,6 +177,12 @@ public class UI : MonoBehaviour
     {
         Debug.Log("clicked");
         SceneManager.LoadScene(mainMenuIndex);
+    }
+
+    public void LoadNextLevel()
+    {
+        Debug.Log("Next");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private IEnumerator ShakeThenHide(Image image)

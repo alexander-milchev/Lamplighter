@@ -54,4 +54,9 @@ public class GameManager : MonoBehaviour
             Debug.Log("Coin " + col);
         }
     }
+
+    public int[] GetCollectibles()
+    {
+        return collectibles;
+    }
 }
