@@ -3,12 +3,13 @@ using UnityEngine;
 public class BackGroundScroller : MonoBehaviour
 {
     private Vector2 startPos;
-    [SerializeField] private GameObject cam;
+    private Camera cam;
     [SerializeField] private float parallaxEffect;
 
     private void Start()
     {
         startPos = transform.position; 
+        cam = Camera.main;
     }
 
     private void LateUpdate()
