@@ -90,4 +90,9 @@ public class PlayerHealth : MonoBehaviour
     {
         return playerHealth;
     }
+
+    public bool GetCanTakeDamage()
+    {
+        return canTakeDamage;
+    }
 }
