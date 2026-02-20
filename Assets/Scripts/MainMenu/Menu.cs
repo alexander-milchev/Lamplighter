@@ -14,6 +14,7 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameObject displayMenu;
     [SerializeField] private GameObject soundMenu;
     [SerializeField] private GameObject controlsMenu;
+    [SerializeField] private GameObject unfinishedMenu;
 
     [Header("Buttons")]
     [SerializeField] private GameObject startButtons; 
@@ -33,6 +34,12 @@ public class Menu : MonoBehaviour
     {
         optionsMenu.SetActive(false);
         startButtons.SetActive(true);
+    }
+
+    public void NavigateUnfinished()
+    {
+        unfinishedMenu.SetActive(true);
+        startButtons.SetActive(false);
     }
 
     public void QuitButton()
