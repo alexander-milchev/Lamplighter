@@ -11,6 +11,10 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject darkOverlay;
     [SerializeField] private Slider fuelSlider;
     [SerializeField] private Image fillImage;
+    [Header("HP stuff")]
+    [SerializeField] private Image[] hpImages;
+    [SerializeField] private float shakeDuration = 0.3f;
+    [SerializeField] private float shakeMagnitude = 10f;
 
     [Header("Colours")]
     [SerializeField] Color fullColour = Color.green;
@@ -32,6 +36,9 @@ public class UI : MonoBehaviour
     {
         GameInput.instance.OnEscape += EscMenuOpen;
         PlayerHealth.instance.OnDeath += DeathScreen;
+        PlayerHealth.instance.OnTakeDamage += UpdateHP;
+        PlayerHealth.instance.OnRespawn += ResetHP;
+
         fuelSlider.minValue = 0;
         fuelSlider.maxValue = 1f;
 
@@ -52,12 +59,39 @@ public class UI : MonoBehaviour
 
         GameInput.instance.OnEscape -= EscMenuOpen;
         PlayerHealth.instance.OnDeath -= DeathScreen;
+        PlayerHealth.instance.OnTakeDamage -= UpdateHP;
+        PlayerHealth.instance.OnRespawn -= ResetHP;
     }
 
     private void EscMenuOpen(object sender, EventArgs e)
     {
         TogglePause();
     }
+
+    private void UpdateHP(object sender, EventArgs e)
+    {
+        int hp = PlayerHealth.instance.GetCurrentHP();
+
+        for (int i = 0; i < hpImages.Length; i++)
+        {
+            int reversedIndex = hpImages.Length - 1 - i;
+            bool shouldBeHidden = reversedIndex >= hp - 1;
+
+            if (shouldBeHidden && hpImages[reversedIndex].gameObject.activeSelf)
+            {
+                StartCoroutine(ShakeThenHide(hpImages[reversedIndex]));
+            }
+        }
+    }
+
+    private void ResetHP(object sender, EventArgs e)
+    {
+        for (int i = 0; i < hpImages.Length; i++)
+        {
+            hpImages[i].gameObject.SetActive(true);
+        }
+    }
+
 
     private void TogglePause()
     {
@@ -118,6 +152,26 @@ public class UI : MonoBehaviour
     {
         Debug.Log("clicked");
         SceneManager.LoadScene(mainMenuIndex);
+    }
+
+    private IEnumerator ShakeThenHide(Image image)
+    {
+        RectTransform rect = image.GetComponent<RectTransform>();
+        Vector2 originalPos = rect.anchoredPosition;
+        float elapsed = 0f;
+
+        while (elapsed < shakeDuration)
+        {
+            float x = originalPos.x + UnityEngine.Random.Range(-shakeMagnitude, shakeMagnitude);
+            float y = originalPos.y + UnityEngine.Random.Range(-shakeMagnitude, shakeMagnitude);
+            rect.anchoredPosition = new Vector2(x, y);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        rect.anchoredPosition = originalPos;
+        image.gameObject.SetActive(false);
     }
 
 }

@@ -44,7 +44,6 @@ public class PlayerHealth : MonoBehaviour
             OnTakeDamage?.Invoke(this, EventArgs.Empty);
             TakeDamage();
             collisionPos = collision.transform.position;
-            Debug.Log(playerHealth);
         }
     }
 
@@ -85,5 +84,10 @@ public class PlayerHealth : MonoBehaviour
     public Vector2 GetCollisionPos()
     {
         return collisionPos;
+    }
+
+    public int GetCurrentHP()
+    {
+        return playerHealth;
     }
 }
