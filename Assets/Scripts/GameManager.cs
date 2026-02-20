@@ -1,20 +1,17 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
+    [SerializeField] private GameObject startCheckpoint;
+    
     private GameObject lastCheckpoint;
 
     private void Awake()
     {
         SingletonPattern();
-    }
-
-    private void Start()
-    {
-        
     }
 
     private void SingletonPattern()
@@ -27,9 +24,19 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public void SetCheckpoint()
+    private void Start()
     {
-        Debug.Log("set checkpoint");
+        lastCheckpoint = startCheckpoint;
+    }
+
+    public void SetCheckpoint(GameObject checkpoint)
+    {
+        lastCheckpoint = checkpoint;
+    }
+
+    public Vector2 GetSpawnPos()
+    {
+        return lastCheckpoint.transform.position;
     }
 
 }

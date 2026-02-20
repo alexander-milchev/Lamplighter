@@ -27,7 +27,7 @@ public class LanternController : MonoBehaviour
     [SerializeField] private float changeRate = 0.1f;
 
     [Header("Components")]
-    [SerializeField] private GameObject player;
+    [SerializeField] private PlayerController player;
     [SerializeField] private GameObject lanternHolder;
     [SerializeField] private CircleCollider2D lightCollider;
     [SerializeField] private Light2D spotLight;
@@ -76,8 +76,8 @@ public class LanternController : MonoBehaviour
     void Start()
     {
         currentLightMeter = maxLightMeter;
-        player = GameObject.Find("_Player");
-        target = player.transform.GetChild(1).gameObject;
+        player = FindFirstObjectByType<PlayerController>();
+        target = player.gameObject.transform.GetChild(1).gameObject;
         lanternHolder = gameObject;
         lightCollider = gameObject.GetComponent<CircleCollider2D>();
         //lightSprite = GameObject.Find("LightSprite");

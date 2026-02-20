@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     [SerializeField] private GameObject pausedScreen;
+    [SerializeField] private GameObject wastedScreen;
     [SerializeField] private GameObject darkOverlay;
 
     [Header("Buttons")]
@@ -17,6 +18,15 @@ public class UI : MonoBehaviour
     private void Start()
     {
         GameInput.instance.OnEscape += EscMenuOpen;
+        PlayerHealth.instance.OnDeath += DeathScreen;
+    }
+
+    void OnDestroy()
+    {
+        Time.timeScale = 1f;
+
+        GameInput.instance.OnEscape -= EscMenuOpen;
+        PlayerHealth.instance.OnDeath -= DeathScreen;
     }
 
     private void EscMenuOpen(object sender, EventArgs e)
@@ -42,11 +52,22 @@ public class UI : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    private void DeathScreen(object sender, EventArgs e)
     {
-        Time.timeScale = 1f;
+        wastedScreen.SetActive(true);
+        darkOverlay.SetActive(true);
+    }
 
-        GameInput.instance.OnEscape -= EscMenuOpen;
+    public void RespawnButton()
+    {
+        PlayerHealth.instance.Respawn();
+        wastedScreen.SetActive(false);
+        darkOverlay.SetActive(false);
+    }
+
+    public void ContinueButton()
+    {
+        TogglePause();
     }
 
     public void LoadMainMenu()
@@ -54,4 +75,5 @@ public class UI : MonoBehaviour
         Debug.Log("clicked");
         SceneManager.LoadScene(mainMenuIndex);
     }
+    
 }

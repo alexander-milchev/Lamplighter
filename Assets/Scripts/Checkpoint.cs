@@ -13,7 +13,7 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameManager.instance.SetCheckpoint();
+        GameManager.instance.SetCheckpoint(gameObject);
         TurnOn();
     }
 

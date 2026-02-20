@@ -72,6 +72,7 @@ public class PlayerHealth : MonoBehaviour
     {
         OnRespawn?.Invoke(this, EventArgs.Empty);
         isDead = false;
+        playerHealth = 3;
     }
 
     private IEnumerator Invulnerable()

@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
         GameInput.instance.OnDash += Dash;
         PlayerHealth.instance.OnTakeDamage += KnockBackPlayer;
         PlayerHealth.instance.OnDeath += DeathAnimation;
+        PlayerHealth.instance.OnRespawn += RespawnTransform;
     }
 
     void OnDestroy()
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
         GameInput.instance.OnDash -= Dash;
         PlayerHealth.instance.OnTakeDamage -= KnockBackPlayer;
         PlayerHealth.instance.OnDeath -= DeathAnimation;
+        PlayerHealth.instance.OnRespawn -= RespawnTransform;
     }
 
     private void FixedUpdate()
@@ -155,5 +157,18 @@ public class PlayerController : MonoBehaviour
         isKnockedBack = true;
         yield return new WaitForSeconds(knockbackDuration);
         isKnockedBack = false;
+        yield return new WaitForSeconds(knockbackDuration);
+        playerRB.linearVelocityX = 0f;
+    }
+
+    private void RespawnTransform(object sender, EventArgs e)
+    {
+        playerRB.constraints = RigidbodyConstraints2D.FreezeRotation;
+        playerRB.linearVelocity = Vector2.zero;
+        gameObject.transform.rotation = Quaternion.identity;
+        playerAnimator.SetTrigger("isAlive");
+        
+        Vector2 respawnPos = GameManager.instance.GetSpawnPos();
+        gameObject.transform.position = respawnPos;
     }
 }
