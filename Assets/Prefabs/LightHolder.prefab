@@ -161,6 +161,7 @@ MonoBehaviour:
   maxFuelUse: 0.1
   lightRegenRate: 5
   flickerTime: 0.01
+  endLevelDuration: 5
 --- !u!58 &7122520009341649127
 CircleCollider2D:
   m_ObjectHideFlags: 0
