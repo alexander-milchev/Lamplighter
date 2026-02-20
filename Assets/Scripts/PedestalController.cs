@@ -42,6 +42,7 @@ public class PedestalController : MonoBehaviour
         {
             Debug.Log("In");
             isLanternInRange = true;
+            LanternController.instance.SetNearPedestal(true);
         }
     }
 
@@ -51,6 +52,7 @@ public class PedestalController : MonoBehaviour
         {
             Debug.Log("Out");
             isLanternInRange = false;
+            LanternController.instance.SetNearPedestal(false);
         }
     }
 

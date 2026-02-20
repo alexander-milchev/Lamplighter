@@ -58,6 +58,7 @@ public class LanternController : MonoBehaviour
     private bool increasingIntensity = false;
     private bool decreasingIntensity = false;
     private bool endingLevel = false;
+    private bool nearPedestal = false;
 
     private void Awake()
     {
@@ -360,5 +361,15 @@ public class LanternController : MonoBehaviour
     public bool isLevelEnding()
     {
         return endingLevel;
+    }
+
+    public bool IsNearPedestal()
+    {
+        return nearPedestal;
+    }
+
+    public void SetNearPedestal(bool x)
+    {
+        nearPedestal = x;
     }
 }
