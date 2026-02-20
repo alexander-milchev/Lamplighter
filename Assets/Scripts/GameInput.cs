@@ -43,6 +43,20 @@ public class GameInput : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void OnDestroy()
+    {
+        inputActions.Disable();
+
+        inputActions.Player.Jump.performed -= Jump_Performed;
+        inputActions.Player.Dash.performed -= Dash_Performed;
+        inputActions.Player.Lantern.performed -= Lantern_Performed;
+        inputActions.Player.IntensityUp.performed -= IntensityUpPerformed;
+        inputActions.Player.IntensityUp.canceled -= IntensityUpCancelled;
+        inputActions.Player.IntensityDown.performed -= IntensityDownPerformed;
+        inputActions.Player.IntensityDown.canceled -= IntensityDownCancelled;
+        inputActions.Player.Escape.performed -= EscapePerformed;
+    }
+
     private void Jump_Performed(InputAction.CallbackContext context)
     {
         OnJump?.Invoke(this, EventArgs.Empty);

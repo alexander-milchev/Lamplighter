@@ -70,7 +70,6 @@ public class LanternController : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -91,6 +90,16 @@ public class LanternController : MonoBehaviour
         GameInput.instance.OnIntensityDown += IntensityDown;
         GameInput.instance.CancelIntensityDown += IntensityDownCancel;
         PlayerHealth.instance.OnDeath += LightDead;
+    }
+
+    void OnDestroy()
+    {
+        GameInput.instance.OnLantern -= Lantern;
+        GameInput.instance.OnIntensityUp -= IntensityUp;
+        GameInput.instance.CancelIntensityUp -= IntensityUpCancel;
+        GameInput.instance.OnIntensityDown -= IntensityDown;
+        GameInput.instance.CancelIntensityDown -= IntensityDownCancel;
+        PlayerHealth.instance.OnDeath -= LightDead;
     }
 
     // Update is called once per frame

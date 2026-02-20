@@ -12,6 +12,11 @@ public class ScreenEffects : MonoBehaviour
         PlayerHealth.instance.OnTakeDamage += PlayScreenShake;
     }
 
+    void OnDestroy()
+    {
+        PlayerHealth.instance.OnTakeDamage -= PlayScreenShake;
+    }
+
     private void PlayScreenShake(object sender, EventArgs e)
     {
         impulseSource.GenerateImpulse(impulseForce);

@@ -35,7 +35,6 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

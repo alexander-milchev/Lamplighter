@@ -42,6 +42,14 @@ public class PlayerController : MonoBehaviour
         PlayerHealth.instance.OnDeath += DeathAnimation;
     }
 
+    void OnDestroy()
+    {
+        GameInput.instance.OnJump -= Jump;
+        GameInput.instance.OnDash -= Dash;
+        PlayerHealth.instance.OnTakeDamage -= KnockBackPlayer;
+        PlayerHealth.instance.OnDeath -= DeathAnimation;
+    }
+
     private void FixedUpdate()
     {
         Move();

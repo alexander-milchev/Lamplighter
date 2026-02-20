@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,11 @@ public class GameManager : MonoBehaviour
         SingletonPattern();
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void SingletonPattern()
     {
         if (instance != null && instance != this)
@@ -19,11 +25,11 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void SetCheckpoint()
     {
         Debug.Log("set checkpoint");
     }
+
 }
