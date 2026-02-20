@@ -70,6 +70,7 @@ public class UI : MonoBehaviour
 
     private void UpdateHP(object sender, EventArgs e)
     {
+        if(!PlayerHealth.instance.GetCanTakeDamage()){return;}
         int hp = PlayerHealth.instance.GetCurrentHP();
 
         for (int i = 0; i < hpImages.Length; i++)
