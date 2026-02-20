@@ -20,9 +20,6 @@ public class UI : MonoBehaviour
     [SerializeField] Color fullColour = Color.green;
     [SerializeField] Color lowColour = Color.green;
 
-    [Header("Buttons")]
-    [SerializeField] private Button mainMenu;
-
     [Header("Fade Settings")]
     [Range(0f, 1f)]
     public float fadeThreshold = 0.95f;
@@ -102,12 +99,22 @@ public class UI : MonoBehaviour
         if (isPaused)
         {
             darkOverlay.SetActive(isPaused);
+            for (int i = 0; i < hpImages.Length; i++)
+            {
+            hpImages[i].gameObject.SetActive(!isPaused);
+            }
+            fuelSlider.gameObject.SetActive(!isPaused);
             Time.timeScale = 0f;
         }
         else
         {
             darkOverlay.SetActive(isPaused);
             Time.timeScale = 1f;
+            for (int i = 0; i < hpImages.Length; i++)
+            {
+            hpImages[i].gameObject.SetActive(!isPaused);
+            }
+            fuelSlider.gameObject.SetActive(!isPaused);
         }
     }
 
@@ -115,6 +122,11 @@ public class UI : MonoBehaviour
     {
         wastedScreen.SetActive(true);
         darkOverlay.SetActive(true);
+        for (int i = 0; i < hpImages.Length; i++)
+            {
+            hpImages[i].gameObject.SetActive(false);
+            }
+            fuelSlider.gameObject.SetActive(false);
     }
 
     void UpdateSlider()
@@ -141,6 +153,11 @@ public class UI : MonoBehaviour
         PlayerHealth.instance.Respawn();
         wastedScreen.SetActive(false);
         darkOverlay.SetActive(false);
+        for (int i = 0; i < hpImages.Length; i++)
+            {
+            hpImages[i].gameObject.SetActive(true);
+            }
+            fuelSlider.gameObject.SetActive(true);
     }
 
     public void ContinueButton()

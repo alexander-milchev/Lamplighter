@@ -8534,6 +8534,10 @@ PrefabInstance:
       propertyPath: 'hpImages.Array.data[2]'
       value: 
       objectReference: {fileID: 1269452413}
+    - target: {fileID: 9050147228019161970, guid: 7d442fbb514bf4aa0846ec8c9250d6fc, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: e201c1e4492d14aafbc247f23ebbde38, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
