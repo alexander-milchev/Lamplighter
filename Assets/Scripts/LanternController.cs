@@ -209,7 +209,7 @@ public class LanternController : MonoBehaviour
         }
         else if(collision.TryGetComponent<HazardsController>(out HazardsController hazardsController))
         {
-            // Set enter time.
+            hazardsController.EnterLight();
         }
     }
 
@@ -221,7 +221,7 @@ public class LanternController : MonoBehaviour
         } 
         else if(collision.TryGetComponent<HazardsController>(out HazardsController hazardsController))
         {
-            // Set exit time.
+            hazardsController.ExitLight();
         }
     }
 

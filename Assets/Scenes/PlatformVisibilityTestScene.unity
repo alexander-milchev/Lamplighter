@@ -5517,6 +5517,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7858808480802851596, guid: 6f4c9ee649124c94fb2d3a655a7580ab, type: 3}
+      propertyPath: attackSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7858808480802851596, guid: 6f4c9ee649124c94fb2d3a655a7580ab, type: 3}
+      propertyPath: holdDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7858808480802851596, guid: 6f4c9ee649124c94fb2d3a655a7580ab, type: 3}
+      propertyPath: retreatSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8622597235879675532, guid: 6f4c9ee649124c94fb2d3a655a7580ab, type: 3}
       propertyPath: m_Size.y
       value: 1.183025
