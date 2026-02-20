@@ -99,22 +99,13 @@ public class UI : MonoBehaviour
         if (isPaused)
         {
             darkOverlay.SetActive(isPaused);
-            for (int i = 0; i < hpImages.Length; i++)
-            {
-            hpImages[i].gameObject.SetActive(!isPaused);
-            }
-            fuelSlider.gameObject.SetActive(!isPaused);
             Time.timeScale = 0f;
         }
         else
         {
             darkOverlay.SetActive(isPaused);
             Time.timeScale = 1f;
-            for (int i = 0; i < hpImages.Length; i++)
-            {
-            hpImages[i].gameObject.SetActive(!isPaused);
-            }
-            fuelSlider.gameObject.SetActive(!isPaused);
+
         }
     }
 
@@ -122,11 +113,7 @@ public class UI : MonoBehaviour
     {
         wastedScreen.SetActive(true);
         darkOverlay.SetActive(true);
-        for (int i = 0; i < hpImages.Length; i++)
-            {
-            hpImages[i].gameObject.SetActive(false);
-            }
-            fuelSlider.gameObject.SetActive(false);
+        
     }
 
     void UpdateSlider()

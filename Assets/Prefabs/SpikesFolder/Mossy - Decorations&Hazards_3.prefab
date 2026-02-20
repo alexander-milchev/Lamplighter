@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 7171527919265921259}
   - component: {fileID: 2423660074942910472}
   - component: {fileID: 8000378723354873956}
+  - component: {fileID: 4741235705406091892}
   - component: {fileID: 1707216888715286233}
+  - component: {fileID: 7645022578599623137}
   m_Layer: 3
   m_Name: Mossy - Decorations&Hazards_3
   m_TagString: Untagged
@@ -130,6 +132,23 @@ CapsuleCollider2D:
   m_Offset: {x: 0.015256584, y: -0.12510401}
   m_Size: {x: 1.3183447, y: 1.3183447}
   m_Direction: 0
+--- !u!114 &4741235705406091892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7886955163311103470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd0a41d08deef549a6c6a5432ebd227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HazardsController
+  range: 5
+  maxTimeInLightBeforeAttack: 3
+  attackSpeed: 1
+  holdDuration: 0.25
+  retreatSpeed: 3
 --- !u!61 &1707216888715286233
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176,3 +195,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.8867188, y: 0.5222974}
   m_EdgeRadius: 0
+--- !u!50 &7645022578599623137
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7886955163311103470}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

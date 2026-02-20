@@ -103,7 +103,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3231042335556719275}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -217,3 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd0a41d08deef549a6c6a5432ebd227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  range: 5
+  maxTimeInLightBeforeAttack: 3
+  attackSpeed: 1
+  holdDuration: 0.25
+  retreatSpeed: 3

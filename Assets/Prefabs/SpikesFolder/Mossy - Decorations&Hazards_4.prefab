@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5069985547700184057}
   - component: {fileID: 5232277811937228215}
   - component: {fileID: 2157538511039783668}
+  - component: {fileID: 5119683986786647958}
   m_Layer: 3
   m_Name: Mossy - Decorations&Hazards_4
   m_TagString: Untagged
@@ -185,7 +186,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2882176027747680396}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -204,3 +205,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5119683986786647958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2882176027747680396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd0a41d08deef549a6c6a5432ebd227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HazardsController
+  range: 5
+  maxTimeInLightBeforeAttack: 3
+  attackSpeed: 1
+  holdDuration: 0.25
+  retreatSpeed: 3
