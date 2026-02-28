@@ -32,7 +32,7 @@ public class LanternController : MonoBehaviour
     [SerializeField] private CircleCollider2D lightCollider;
     [SerializeField] private Light2D spotLight;
     [SerializeField] public GameObject lightSprite;
-    private GameObject target;                  // At end of level, update target to the pedestal and let it go on top.
+    private GameObject target;
     private float targetRot = 0f;
     private float rotVelocity = 0f;
 
